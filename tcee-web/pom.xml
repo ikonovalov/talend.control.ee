@@ -25,6 +25,12 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>ru.codeunited</groupId>
+            <artifactId>tcee-ejb</artifactId>
+            <version>0.0.1</version>
+            <type>ejb-client</type>
+        </dependency>
     </dependencies>
 
     <build>
