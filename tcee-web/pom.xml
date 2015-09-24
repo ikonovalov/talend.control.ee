@@ -36,7 +36,7 @@
         <dependency>
             <groupId>ru.codeunited</groupId>
             <artifactId>tcee-ejb</artifactId>
-            <version>0.0.1</version>
+            <version>${version}</version>
             <type>ejb-client</type>
         </dependency>
         <!-- Web UI -->
