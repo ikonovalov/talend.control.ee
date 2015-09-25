@@ -1,7 +1,6 @@
 package ru.codeunited;
 
 import javax.ejb.Local;
-import java.util.List;
 
 /**
  * codeunited.ru
@@ -9,8 +8,7 @@ import java.util.List;
  * Created by ikonovalov on 25.09.15.
  */
 @Local
-public interface LogCatcherServiceLocal extends LogCatcherService{
-
+public interface StatCatcherServiceLocal extends StatCatcherService {
 
 
 }

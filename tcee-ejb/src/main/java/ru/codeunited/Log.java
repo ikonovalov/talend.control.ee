@@ -1,5 +1,6 @@
 package ru.codeunited;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,7 +13,7 @@ import java.util.Date;
  * Created by ikonovalov on 25.09.15.
  */
 @Entity
-@Table(name = "TAB_TALEND_LOG")
+@Table(name = "TAB_TALEND_LOG") // TODO Implements custom naming strategy and remove annotations
 public class Log implements Serializable {
 
     @Id
@@ -22,8 +23,10 @@ public class Log implements Serializable {
 
     private String pid;
 
+    @Column(name = "root_pid")
     private String rootPid;
 
+    @Column(name = "father_pid")
     private String fatherPid;
 
     private String project;

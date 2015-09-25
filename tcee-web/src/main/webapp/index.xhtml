@@ -8,27 +8,48 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
 <h:body>
-    <p:accordionPanel>
-        <p:tab title="First Tab Title">
-            <h:outputText value= "#{talendLog.business}"/>
-        </p:tab>
-        <p:tab title="Second Tab Title">
-            <p:outputLabel value="JournalDev - JSF2/Primefaces Tutorial"></p:outputLabel>
-            <p:dataTable value="#{viewEmployeesManagedBean.employees}" var="employee">
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Employee ID"></h:outputText>
-                    </f:facet>
-                    <h:outputText value="#{employee.employeeId}"></h:outputText>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Employee Name"></h:outputText>
-                    </f:facet>
-                    <h:outputText value="#{employee.employeeName}"></h:outputText>
-                </p:column>
-            </p:dataTable>
-        </p:tab>
-    </p:accordionPanel>
+    <p:layout style="min-width:400px;min-height:200px;">
+        <p:layoutUnit position="north" size="50">
+            <h:outputText value="Top content." />
+        </p:layoutUnit>
+        <p:layoutUnit position="west" resizable="true" size="200" minSize="40" maxSize="200">
+            West
+        </p:layoutUnit>
+        <p:layoutUnit position="east" size="200" minSize="200">
+            <h:outputText value="Right Content" />
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center">
+            <p:accordionPanel multiple="true">
+                <p:tab title="LOG (#{talendLog.count} for #{talendLog.lastDate})">
+                    <p:dataTable value="#{talendLog.log}" var="log" lazy="true" >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="PID"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{log.pid}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Name"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{log.job}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Context"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{log.context}"></h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>
+                <p:tab title="Statistic (#{talendStat.count})">
+                    <p:outputLabel value="Statistic should be here"></p:outputLabel>
+                </p:tab>
+            </p:accordionPanel>
+        </p:layoutUnit>
+
+    </p:layout>
+
 </h:body>
 </html>

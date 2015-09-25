@@ -1,10 +1,14 @@
 package ru.codeunited.tcee.web.beans;
 
 
+import ru.codeunited.Log;
 import ru.codeunited.LogCatcherService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import java.util.Date;
+import java.util.List;
 
 /**
  * codeunited.ru
@@ -12,13 +16,22 @@ import javax.faces.bean.ManagedBean;
  * Created by ikonovalov on 24.09.15.
  */
 @ManagedBean(name = "talendLog")
+@SessionScoped
 public class TalendLogManagedBean {
 
     @EJB
-    private LogCatcherService ejb;
+    private LogCatcherService logCatcherService;
 
-    public String getBusiness() {
-        return "Log records : " + ejb.count();
+    public int getCount() {
+        return logCatcherService.count();
+    }
+
+    public List<Log> getLog() {
+        return logCatcherService.allLog();
+    }
+
+    public Date getLastDate() {
+        return logCatcherService.getLastDate();
     }
 
 }

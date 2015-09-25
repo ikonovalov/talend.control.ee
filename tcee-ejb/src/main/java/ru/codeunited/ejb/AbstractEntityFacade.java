@@ -1,6 +1,7 @@
 package ru.codeunited.ejb;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
@@ -12,7 +13,12 @@ import java.util.List;
  */
 public abstract class AbstractEntityFacade<T> {
 
-    protected abstract EntityManager getEntityManager();
+    @PersistenceContext(unitName = "tcee-ejb-entity-unit")
+    private EntityManager em;
+
+    protected EntityManager getEntityManager() {
+        return em;
+    }
 
     private Class<T> entityClass;
 

@@ -2,41 +2,36 @@ package ru.codeunited.ejb;
 
 import ru.codeunited.Log;
 import ru.codeunited.LogCatcherService;
+import ru.codeunited.LogCatcherServiceLocal;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
+import javax.ejb.TransactionAttribute;
+import java.util.Date;
 import java.util.List;
 
+import static javax.ejb.TransactionAttributeType.NOT_SUPPORTED;
 
 @Stateless
-public class LogCatcherBeanFacade extends AbstractEntityFacade<Log> implements LogCatcherService {
-
-    //@Resource( lookup = "java:/jdbc/talend") /* WORKS */
-    @Resource(name = "jdbc/talend") /* WORK with jboss-ejb3.xml mapping */
-    private DataSource talendDs;
-
-    @PersistenceContext(unitName = "tcee-ejb-entity-unit")
-    private EntityManager em;
+public class LogCatcherBeanFacade extends AbstractEntityFacade<Log> implements LogCatcherServiceLocal, LogCatcherService {
 
     public LogCatcherBeanFacade() {
         super(Log.class);
     }
 
     @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-
-    @Override
+    @TransactionAttribute(NOT_SUPPORTED)
     public int count() {
         return super.count();
     }
 
     @Override
-    public List<Log> rootLogs() {
-        return null;
+    public Date getLastDate() {
+        return (Date) getEntityManager().createQuery("select max(log.moment) from Log log").getSingleResult();
+    }
+
+    @Override // TODO move it to LOCAL on even remove
+    @TransactionAttribute(NOT_SUPPORTED)
+    public List<Log> allLog() {
+        return super.findAll();
     }
 }
