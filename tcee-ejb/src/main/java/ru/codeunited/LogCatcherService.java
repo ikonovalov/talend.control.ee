@@ -8,6 +8,6 @@ import javax.ejb.Remote;
  * Created by ikonovalov on 22.09.15.
  */
 @Remote
-public interface NewSessionBusiness {
-    String businessMethod();
+public interface LogCatcherService extends LogCatcherServiceLocal {
+
 }
