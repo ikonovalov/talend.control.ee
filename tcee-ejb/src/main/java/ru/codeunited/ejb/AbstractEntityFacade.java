@@ -2,6 +2,7 @@ package ru.codeunited.ejb;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
@@ -27,7 +28,7 @@ public abstract class AbstractEntityFacade<T> {
 
     }
 
-    public AbstractEntityFacade(Class<T> entityClass) {
+    protected AbstractEntityFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -35,7 +36,11 @@ public abstract class AbstractEntityFacade<T> {
         return getEntityManager().getCriteriaBuilder().createQuery();
     }
 
-    public int count() {
+    /**
+     * Get all entities count.
+     * @return entities count.
+     */
+    protected int count() {
         CriteriaQuery cq = createCriteriaQuery();
         Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
@@ -44,9 +49,18 @@ public abstract class AbstractEntityFacade<T> {
         return ((Long) q.getSingleResult()).intValue();
     }
 
-    public List<T> findAll() {
-        CriteriaQuery cq = createCriteriaQuery();
-        cq.select(cq.from(entityClass));
+    /**
+     * Returns all records ordered by "moment"
+     * @return List<T>
+     */
+    protected List<T> findAll() {
+        final CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        final CriteriaQuery cq = criteriaBuilder.createQuery();
+
+        final Root<T> root = cq.from(entityClass);
+
+        cq.select(root).orderBy(criteriaBuilder.desc(root.get("moment")));
+
         return getEntityManager().createQuery(cq).getResultList();
     }
 

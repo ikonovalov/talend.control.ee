@@ -20,7 +20,7 @@
         </p:layoutUnit>
 
         <p:layoutUnit position="center">
-            <p:accordionPanel multiple="true">
+            <p:accordionPanel multiple="true" dynamic="true">
                 <p:tab title="LOG (#{talendLog.count} for #{talendLog.lastDate})">
                     <p:dataTable value="#{talendLog.log}" var="log" lazy="true" >
                         <p:column>
@@ -40,6 +40,12 @@
                                 <h:outputText value="Context"></h:outputText>
                             </f:facet>
                             <h:outputText value="#{log.context}"></h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Moment"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{log.moment}"></h:outputText>
                         </p:column>
                     </p:dataTable>
                 </p:tab>
