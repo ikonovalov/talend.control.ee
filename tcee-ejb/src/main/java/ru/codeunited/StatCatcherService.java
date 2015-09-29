@@ -17,4 +17,5 @@ public interface StatCatcherService {
 
     List<JobRun> allJobRuns();
 
+    List<JobRun> runsForJob(Job job);
 }

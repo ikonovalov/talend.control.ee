@@ -1,6 +1,8 @@
 package ru.codeunited.tcee.web.beans;
 
+import ru.codeunited.Job;
 import ru.codeunited.JobRun;
+import ru.codeunited.JobService;
 import ru.codeunited.StatCatcherService;
 
 import javax.ejb.EJB;
@@ -21,12 +23,19 @@ public class TalendStatManagedBean {
     @EJB
     private StatCatcherService statCatcherService;
 
+    @EJB
+    private JobService jobService;
+
     public int getCount() {
         return statCatcherService.count();
     }
 
     public List<JobRun> getJobRuns() {
         return statCatcherService.allJobRuns();
+    }
+
+    public List<Job> getJobs() {
+        return jobService.getJobs();
     }
 
 }

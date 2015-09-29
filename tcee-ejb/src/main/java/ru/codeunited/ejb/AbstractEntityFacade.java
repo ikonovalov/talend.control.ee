@@ -2,6 +2,7 @@ package ru.codeunited.ejb;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -45,8 +46,8 @@ public abstract class AbstractEntityFacade<T> {
         Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
 
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        return ((Long) q.getSingleResult()).intValue();
+        Query query = getEntityManager().createQuery(cq);
+        return ((Long) query.getSingleResult()).intValue();
     }
 
     /**

@@ -1,9 +1,6 @@
 package ru.codeunited.ejb;
 
-import ru.codeunited.JobRun;
-import ru.codeunited.Statistic;
-import ru.codeunited.StatCatcherService;
-import ru.codeunited.StatCatcherServiceLocal;
+import ru.codeunited.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -53,6 +50,11 @@ public class StatCatcherBeanFacade extends AbstractEntityFacade<Statistic> imple
             return jr;
         }).collect(toList());
         return jobRuns;
+    }
+
+    @Override
+    public List<JobRun> runsForJob(Job job) {
+        return null;
     }
 
 }
