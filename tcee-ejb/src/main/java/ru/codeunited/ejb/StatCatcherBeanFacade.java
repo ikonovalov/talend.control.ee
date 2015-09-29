@@ -1,11 +1,17 @@
 package ru.codeunited.ejb;
 
+import ru.codeunited.JobRun;
 import ru.codeunited.Statistic;
 import ru.codeunited.StatCatcherService;
 import ru.codeunited.StatCatcherServiceLocal;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * codeunited.ru
@@ -27,6 +33,26 @@ public class StatCatcherBeanFacade extends AbstractEntityFacade<Statistic> imple
     @Override
     public List<Statistic> allStatistics() {
         return super.findAll();
+    }
+
+    @Override
+    public List<JobRun> allJobRuns() {
+        Query query = getEntityManager().createQuery(
+                "SELECT a, b from Statistic a, Statistic b " +
+                        "where " +
+                        "a.pid = b.pid and" +
+                        " a.messageType = 'begin' and b.messageType = 'end' " +
+                        "and (a.message is null or a.message='') " +
+                        "order by a.moment desc "
+        );
+        List<Object[]> resultsList = query.getResultList();
+        List<JobRun> jobRuns = resultsList.stream().map((resultRow) -> {
+            JobRun jr = new JobRun();
+            jr.setStart((Statistic)resultRow[0]);
+            jr.setEnd((Statistic) resultRow[1]);
+            return jr;
+        }).collect(toList());
+        return jobRuns;
     }
 
 }

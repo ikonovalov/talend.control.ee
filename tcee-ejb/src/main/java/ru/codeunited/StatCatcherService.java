@@ -15,4 +15,6 @@ public interface StatCatcherService {
 
     int count();
 
+    List<JobRun> allJobRuns();
+
 }

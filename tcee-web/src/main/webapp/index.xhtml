@@ -49,8 +49,9 @@
                         </p:column>
                     </p:dataTable>
                 </p:tab>
-                <p:tab title="Statistic (#{talendStat.count})">
-                    <p:outputLabel value="Statistic should be here"></p:outputLabel>
+                <p:tab title="Statistic (#{talendStat.jobRuns}) ">
+                    ${talendStat.jobRuns}
+                    <p:outputLabel value="Statistic should be here"/>
                 </p:tab>
             </p:accordionPanel>
         </p:layoutUnit>
