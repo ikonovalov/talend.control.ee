@@ -1,6 +1,11 @@
 package ru.codeunited.tcee.web.beans;
 
-import org.primefaces.model.menu.*;
+import org.primefaces.event.MenuActionEvent;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.DefaultSubMenu;
+import org.primefaces.model.menu.MenuModel;
+import ru.codeunited.Job;
 import ru.codeunited.JobService;
 import ru.codeunited.Project;
 
@@ -46,8 +51,8 @@ public class TalendJobManagedBean {
         return projectMenu;
     }
 
-    public void onJobSelect() {
-        addMessage("Success", "Data deleted");
+    public void onJobSelect(MenuActionEvent actionEvent) {
+        addMessage(((Job)actionEvent.getMenuItem().getValue()).getName(), "Job selected");
     }
 
     public void addMessage(String summary, String detail) {

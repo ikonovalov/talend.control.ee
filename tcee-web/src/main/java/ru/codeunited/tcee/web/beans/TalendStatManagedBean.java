@@ -7,6 +7,7 @@ import ru.codeunited.StatCatcherService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * Created by ikonovalov on 25.09.15.
  */
 @ManagedBean(name = "talendStat")
-@SessionScoped
+@RequestScoped
 public class TalendStatManagedBean {
 
     @EJB
