@@ -42,13 +42,12 @@ public class StatisticCatcherBeanFacade extends AbstractEntityFacade<Statistic> 
                         "order by a.moment desc "
         );
         List<Object[]> resultsList = query.getResultList();
-        List<JobRun> jobRuns = resultsList.stream().map((resultRow) -> {
+        return resultsList.stream().map((resultRow) -> {
             JobRun jr = new JobRun();
             jr.setStart((Statistic)resultRow[0]);
             jr.setEnd((Statistic) resultRow[1]);
             return jr;
         }).collect(toList());
-        return jobRuns;
     }
 
     @Override

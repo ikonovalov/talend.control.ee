@@ -18,7 +18,7 @@ public abstract class AbstractEntityFacade<T> {
     @PersistenceContext(unitName = "tcee-ejb-entity-unit")
     private EntityManager em;
 
-    protected EntityManager getEntityManager() {
+    EntityManager getEntityManager() {
         return em;
     }
 
@@ -29,7 +29,7 @@ public abstract class AbstractEntityFacade<T> {
 
     }
 
-    protected AbstractEntityFacade(Class<T> entityClass) {
+    AbstractEntityFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
@@ -54,7 +54,7 @@ public abstract class AbstractEntityFacade<T> {
      * Returns all records ordered by "moment"
      * @return List<T>
      */
-    protected List<T> findAll() {
+    List<T> findAll() {
         final CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
         final CriteriaQuery cq = criteriaBuilder.createQuery();
 

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -154,8 +155,7 @@ public class Log implements Serializable, Comparable<Log> {
         if (!rootPid.equals(log.rootPid)) return false;
         if (!fatherPid.equals(log.fatherPid)) return false;
         if (project != null ? !project.equals(log.project) : log.project != null) return false;
-        if (job != null ? !job.equals(log.job) : log.job != null) return false;
-        return !(context != null ? !context.equals(log.context) : log.context != null);
+        return !(job != null ? !job.equals(log.job) : log.job != null) && !(context != null ? !context.equals(log.context) : log.context != null);
 
     }
 

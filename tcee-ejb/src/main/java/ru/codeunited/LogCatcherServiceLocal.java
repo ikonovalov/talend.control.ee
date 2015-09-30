@@ -1,7 +1,6 @@
 package ru.codeunited;
 
 import javax.ejb.Local;
-import java.util.List;
 
 /**
  * codeunited.ru

@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.List;
@@ -29,7 +30,27 @@ public class TalendJobManagedBean {
     @EJB
     private JobService jobService;
 
-    private MenuModel projectMenu = new DefaultMenuModel();
+    @ManagedProperty(value = "#{talendLog}")
+    private TalendLogManagedBean logBean;
+
+    @ManagedProperty(value = "#{talendStat}")
+    private TalendStatManagedBean statBean;
+
+    private final MenuModel projectMenu = new DefaultMenuModel();
+
+    private Job selectedJob = null;
+
+    public void setLogBean(TalendLogManagedBean logBean) {
+        this.logBean = logBean;
+    }
+
+    public void setStatBean(TalendStatManagedBean statBean) {
+        this.statBean = statBean;
+    }
+
+    public boolean isJobSelected() {
+        return selectedJob != null;
+    }
 
     @PostConstruct
     public void initModel() {
@@ -52,7 +73,8 @@ public class TalendJobManagedBean {
     }
 
     public void onJobSelect(MenuActionEvent actionEvent) {
-        addMessage(((Job)actionEvent.getMenuItem().getValue()).getName(), "Job selected");
+        selectedJob = (Job)actionEvent.getMenuItem().getValue();
+        addMessage(selectedJob.getName(), "Job selected");
     }
 
     public void addMessage(String summary, String detail) {

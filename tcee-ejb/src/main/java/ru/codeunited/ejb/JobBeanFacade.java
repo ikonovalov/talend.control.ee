@@ -47,14 +47,13 @@ public class JobBeanFacade implements JobService, JobServiceLocal {
 
     @Override
     public List<Project> getProjects() {
-        List<Project> projects = em.createQuery(
+        return em.createQuery(
                 "select distinct s.project from Statistic as s", String.class
         ).getResultList()
                 .stream()
                 .map(Project::new)
                 .sorted()
                 .collect(toList());
-        return projects;
     }
 
 }

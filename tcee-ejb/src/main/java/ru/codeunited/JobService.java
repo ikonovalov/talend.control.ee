@@ -2,7 +2,6 @@ package ru.codeunited;
 
 import javax.ejb.Remote;
 import java.util.List;
-import java.util.Set;
 
 /**
  * codeunited.ru

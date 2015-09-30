@@ -114,7 +114,7 @@ public class Statistic implements Serializable {
         return job;
     }
 
-    public void setJob(String jod) {
+    public void setJob(String job) {
         this.job = job;
     }
 

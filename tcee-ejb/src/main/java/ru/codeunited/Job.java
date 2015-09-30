@@ -1,5 +1,6 @@
 package ru.codeunited;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -26,7 +27,7 @@ public class Job implements Serializable, Comparable<Job> {
     }
 
     @Override
-    public int compareTo(Job o) {
+    public int compareTo(@NotNull Job o) {
         return getName().compareTo(o.getName());
     }
 }
