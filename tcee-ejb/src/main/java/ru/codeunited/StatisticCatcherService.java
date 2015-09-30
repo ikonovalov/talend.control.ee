@@ -9,7 +9,7 @@ import java.util.List;
  * Created by ikonovalov on 25.09.15.
  */
 @Remote
-public interface StatCatcherService {
+public interface StatisticCatcherService {
 
     List<Statistic> allStatistics();
 

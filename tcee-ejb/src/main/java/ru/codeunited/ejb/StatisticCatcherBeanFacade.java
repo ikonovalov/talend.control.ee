@@ -1,11 +1,10 @@
 package ru.codeunited.ejb;
 
 import ru.codeunited.*;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -16,9 +15,9 @@ import static java.util.stream.Collectors.toList;
  * Created by ikonovalov on 25.09.15.
  */
 @Stateless
-public class StatCatcherBeanFacade extends AbstractEntityFacade<Statistic> implements StatCatcherServiceLocal, StatCatcherService {
+public class StatisticCatcherBeanFacade extends AbstractEntityFacade<Statistic> implements StatisticCatcherServiceLocal, StatisticCatcherService {
 
-    public StatCatcherBeanFacade() {
+    public StatisticCatcherBeanFacade() {
         super(Statistic.class);
     }
 
@@ -54,7 +53,7 @@ public class StatCatcherBeanFacade extends AbstractEntityFacade<Statistic> imple
 
     @Override
     public List<JobRun> runsForJob(Job job) {
-        return null;
+        throw new NotImplementedException();
     }
 
 }
