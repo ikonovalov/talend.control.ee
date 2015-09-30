@@ -11,5 +11,11 @@ import java.util.Set;
  */
 @Remote
 public interface JobService {
+
     List<Job> getJobs();
+
+    List<Job> getJobs(Project project);
+
+    List<Project> getProjects();
+
 }

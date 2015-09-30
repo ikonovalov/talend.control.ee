@@ -9,4 +9,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface JobServiceLocal extends JobService {
+
 }

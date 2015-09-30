@@ -3,6 +3,7 @@ package ru.codeunited.ejb;
 import ru.codeunited.Job;
 import ru.codeunited.JobService;
 import ru.codeunited.JobServiceLocal;
+import ru.codeunited.Project;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -31,6 +32,29 @@ public class JobBeanFacade implements JobService, JobServiceLocal {
                .map(Job::new)
                .sorted()
                .collect(toList());
+    }
+
+    @Override
+    public List<Job> getJobs(Project project) {
+        return em.createQuery(
+                "select distinct s.job from Statistic as s where s.project = :p", String.class
+        ).setParameter("p", project.getName()).getResultList()
+                .stream()
+                .map(Job::new)
+                .sorted()
+                .collect(toList());
+    }
+
+    @Override
+    public List<Project> getProjects() {
+        List<Project> projects = em.createQuery(
+                "select distinct s.project from Statistic as s", String.class
+        ).getResultList()
+                .stream()
+                .map(Project::new)
+                .sorted()
+                .collect(toList());
+        return projects;
     }
 
 }

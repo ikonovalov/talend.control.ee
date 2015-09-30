@@ -3,16 +3,15 @@ package ru.codeunited;
 import java.io.Serializable;
 
 /**
- * This is a fully synthetic object not from db's world/
  * codeunited.ru
  * konovalov84@gmail.com
- * Created by ikonovalov on 29.09.15.
+ * Created by ikonovalov on 30.09.15.
  */
-public class Job implements Serializable, Comparable<Job> {
+public class Project implements Serializable, Comparable<Project> {
 
     private final String name;
 
-    public Job(String name) {
+    public Project(String name) {
         this.name = name;
     }
 
@@ -26,7 +25,7 @@ public class Job implements Serializable, Comparable<Job> {
     }
 
     @Override
-    public int compareTo(Job o) {
+    public int compareTo(Project o) {
         return getName().compareTo(o.getName());
     }
 }

@@ -4,10 +4,10 @@
             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <!-- Parameters -->
-    <context-param>
+    <!--<context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>south-street</param-value>
-    </context-param>
+    </context-param>-->
 
     <!-- JSF mapping -->
     <servlet>

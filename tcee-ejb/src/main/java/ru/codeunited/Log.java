@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "TAB_TALEND_LOG") // TODO Implements custom naming strategy and remove annotations
-public class Log implements Serializable {
+public class Log implements Serializable, Comparable<Log> {
 
     @Id
     private Long id;
@@ -174,4 +174,8 @@ public class Log implements Serializable {
     }
 
 
+    @Override
+    public int compareTo(Log o) {
+        return getMoment().compareTo(o.getMoment());
+    }
 }

@@ -1,11 +1,13 @@
 package ru.codeunited;
 
+import java.io.Serializable;
+
 /**
  * codeunited.ru
  * konovalov84@gmail.com
  * Created by ikonovalov on 29.09.15.
  */
-public class JobRun {
+public class JobRun implements Serializable {
 
     private Statistic start;
 
