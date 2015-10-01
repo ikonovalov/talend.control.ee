@@ -5,15 +5,39 @@
              lazy="true" scrollable="true" disabledSelection="false">
     <p:column>
         <f:facet name="header">
+            <h:outputText value="Moment"></h:outputText>
+        </f:facet>
+        <h:outputText value="#{log.moment}"></h:outputText>
+    </p:column>
+    <p:column>
+        <f:facet name="header">
             <h:outputText value="PID"></h:outputText>
         </f:facet>
         <h:outputText value="#{log.pid}"></h:outputText>
     </p:column>
     <p:column>
         <f:facet name="header">
-            <h:outputText value="Name"></h:outputText>
+            <h:outputText value="Root"></h:outputText>
         </f:facet>
-        <h:outputText value="#{log.job}"></h:outputText>
+        <h:outputText value="#{log.rootPid}"></h:outputText>
+    </p:column>
+    <p:column>
+        <f:facet name="header">
+            <h:outputText value="Father"></h:outputText>
+        </f:facet>
+        <h:outputText value="#{log.fatherPid}"></h:outputText>
+    </p:column>
+    <p:column>
+        <f:facet name="header">
+            <h:outputText value="Type"></h:outputText>
+        </f:facet>
+        <h:outputText value="#{log.type}"></h:outputText>
+    </p:column>
+    <p:column>
+        <f:facet name="header">
+            <h:outputText value="Message"></h:outputText>
+        </f:facet>
+        <h:outputText value="#{log.message}"></h:outputText>
     </p:column>
     <p:column>
         <f:facet name="header">
@@ -21,10 +45,5 @@
         </f:facet>
         <h:outputText value="#{log.context}"></h:outputText>
     </p:column>
-    <p:column>
-        <f:facet name="header">
-            <h:outputText value="Moment"></h:outputText>
-        </f:facet>
-        <h:outputText value="#{log.moment}"></h:outputText>
-    </p:column>
+
 </p:dataTable>

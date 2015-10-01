@@ -11,6 +11,8 @@ import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import static ru.codeunited.tcee.web.beans.Constants.ZERO_TIME;
 
 /**
  * codeunited.ru
@@ -26,12 +28,16 @@ public class TalendLogManagedBean {
 
     private List<Log> logs = new ArrayList<>();
 
+    private Date lastDate = null;
+
     public int getCount() {
-        return logCatcherService.count();
+        return getLog().size();
     }
 
     public List<Log> reloadLog(Job job) {
         logs = logCatcherService.getLogs(job);
+        lastDate = ZERO_TIME;
+        logs.stream().max(Log::compareTo).ifPresent(log -> lastDate = log.getMoment());
         return getLog();
     }
 
@@ -40,7 +46,7 @@ public class TalendLogManagedBean {
     }
 
     public Date getLastDate() {
-        return logCatcherService.getLastDate();
+        return lastDate;
     }
 
 }
