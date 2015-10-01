@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import java.util.List;
 
 /**
@@ -62,6 +63,7 @@ public class TalendJobManagedBean {
                     jobService.getJobs(project).stream().forEach(job -> {
                         DefaultMenuItem item = new DefaultMenuItem(job);
                         item.setCommand("#{jobBean.onJobSelect}");
+                        item.setUpdate("details details:panel:logTable");
                         subMenu.addElement(item);
                     });
                     projectMenu.addElement(subMenu);
@@ -74,6 +76,7 @@ public class TalendJobManagedBean {
 
     public void onJobSelect(MenuActionEvent actionEvent) {
         selectedJob = (Job)actionEvent.getMenuItem().getValue();
+        logBean.reloadLog(selectedJob);
         addMessage(selectedJob.getName(), "Job selected");
     }
 

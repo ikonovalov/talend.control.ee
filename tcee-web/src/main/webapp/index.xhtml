@@ -19,18 +19,20 @@
                 <p:panelMenu model="#{jobBean.projectMenu}"/>
             </h:form>
         </p:layoutUnit>
-        <p:layoutUnit id="centerUnit" position="center" style="height: 100%">
-            <p:accordionPanel id="summaryPanel" multiple="false" dynamic="true" rendered="#{jobBean.jobSelected}">
-                <p:tab title="Job map">
-                    <p:outputLabel value="MAP"/>
-                </p:tab>
-                <p:tab title="LOG (#{talendLog.count} for #{talendLog.lastDate})">
-                    <ui:include src="logtable.xhtml"/>
-                </p:tab>
-                <p:tab title="Statistic (#{talendStat.jobs}) ">
-                    <ui:include src="stattable.xhtml"/>
-                </p:tab>
-            </p:accordionPanel>
+        <p:layoutUnit position="center">
+            <h:form id="details">
+                <p:accordionPanel id="panel" multiple="false" dynamic="true" rendered="#{jobBean.jobSelected}">
+                    <p:tab title="Job map">
+                        <p:outputLabel value="MAP"/>
+                    </p:tab>
+                    <p:tab title="LOG (#{talendLog.count} for #{talendLog.lastDate})">
+                        <ui:include src="logtable.xhtml"/>
+                    </p:tab>
+                    <p:tab title="Statistic (#{talendStat.jobs}) ">
+                        <ui:include src="stattable.xhtml"/>
+                    </p:tab>
+                </p:accordionPanel>
+            </h:form>
         </p:layoutUnit>
     </p:layout>
 </h:body>

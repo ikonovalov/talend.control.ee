@@ -1,5 +1,6 @@
 package ru.codeunited.ejb;
 
+import ru.codeunited.Job;
 import ru.codeunited.Log;
 import ru.codeunited.LogCatcherService;
 import ru.codeunited.LogCatcherServiceLocal;
@@ -27,6 +28,14 @@ public class LogCatcherBeanFacade extends AbstractEntityFacade<Log> implements L
     @Override
     public Date getLastDate() {
         return (Date) getEntityManager().createQuery("select max(log.moment) from Log log").getSingleResult();
+    }
+
+    @Override
+    public List<Log> getLogs(Job job) {
+        return getEntityManager()
+                .createQuery("select log from Log log where log.job = :jobname", Log.class)
+                .setParameter("jobname", job.getName())
+                .getResultList();
     }
 
     @Override // TODO move it to LOCAL on even remove

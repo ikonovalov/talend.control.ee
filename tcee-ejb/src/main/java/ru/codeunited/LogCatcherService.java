@@ -12,6 +12,8 @@ import java.util.List;
 @Remote
 public interface LogCatcherService {
 
+    List<Log> getLogs(Job job);
+
     List<Log> allLog();
 
     int count();
