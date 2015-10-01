@@ -22,37 +22,22 @@ public class StatisticCatcherBeanFacade extends AbstractEntityFacade<Statistic> 
     }
 
     @Override
-    public int count() {
-        return super.count();
-    }
-
-    @Override
-    public List<Statistic> allStatistics() {
-        return super.findAll();
-    }
-
-    @Override
-    public List<JobRun> allJobRuns() {
+    public List<JobRun> runsForJob(Job job) {
         Query query = getEntityManager().createQuery(
                 "SELECT a, b from Statistic a, Statistic b " +
                         "where " +
-                        "a.pid = b.pid and" +
-                        " a.messageType = 'begin' and b.messageType = 'end' " +
-                        "and (a.message is null or a.message='') " +
-                        "order by a.moment desc "
-        );
-        List<Object[]> resultsList = query.getResultList();
-        return resultsList.stream().map((resultRow) -> {
-            JobRun jr = new JobRun();
-            jr.setStart((Statistic)resultRow[0]);
-            jr.setEnd((Statistic) resultRow[1]);
-            return jr;
-        }).collect(toList());
-    }
+                        "a.job = :jobname and " +
+                        "a.pid = b.pid and " +
+                        "a.messageType = 'begin' and b.messageType = 'end' " +
+                        "and a.origin='' and b.origin = '' " +
+                        "order by a.moment desc")
+                .setParameter("jobname", job.getName());
 
-    @Override
-    public List<JobRun> runsForJob(Job job) {
-        throw new NotImplementedException();
+        List<Object[]> stats = query.getResultList();
+        return stats
+                .stream()
+                .map(pair -> new JobRun((Statistic)pair[0], (Statistic)pair[1]))
+                .collect(toList());
     }
 
 }

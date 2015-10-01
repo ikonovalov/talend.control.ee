@@ -22,13 +22,13 @@
         <p:layoutUnit position="center">
             <h:form id="details">
                 <p:accordionPanel id="panel" multiple="false" dynamic="true" rendered="#{jobBean.jobSelected}">
-                    <p:tab title="Job map">
-                        <p:outputLabel value="MAP"/>
+                    <p:tab title="Job runs (#{talendStat.jobRunsCount})">
+                        <ui:include src="jobruns_table.xhtml"/>
                     </p:tab>
                     <p:tab title="LOG (#{talendLog.count} for #{talendLog.lastDate})">
                         <ui:include src="logtable.xhtml"/>
                     </p:tab>
-                    <p:tab title="Statistic (#{talendStat.jobs}) ">
+                    <p:tab title="Statistic">
                         <ui:include src="stattable.xhtml"/>
                     </p:tab>
                 </p:accordionPanel>

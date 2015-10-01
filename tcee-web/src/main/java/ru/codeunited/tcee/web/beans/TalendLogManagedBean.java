@@ -11,7 +11,7 @@ import javax.faces.bean.SessionScoped;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 import static ru.codeunited.tcee.web.beans.Constants.ZERO_TIME;
 
 /**
@@ -26,6 +26,7 @@ public class TalendLogManagedBean {
     @EJB
     private LogCatcherService logCatcherService;
 
+    // log for selected job
     private List<Log> logs = new ArrayList<>();
 
     private Date lastDate = null;
@@ -34,6 +35,11 @@ public class TalendLogManagedBean {
         return getLog().size();
     }
 
+    /**
+     * Update inforamtion about log in a currently viewed job.
+     * @param job
+     * @return
+     */
     public List<Log> reloadLog(Job job) {
         logs = logCatcherService.getLogs(job);
         lastDate = ZERO_TIME;
@@ -41,6 +47,10 @@ public class TalendLogManagedBean {
         return getLog();
     }
 
+    /**
+     * Get currently loaded log info.
+     * @return
+     */
     public List<Log> getLog() {
         return logs;
     }

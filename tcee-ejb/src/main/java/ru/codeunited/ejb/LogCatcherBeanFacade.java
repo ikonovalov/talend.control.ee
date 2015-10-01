@@ -37,10 +37,4 @@ public class LogCatcherBeanFacade extends AbstractEntityFacade<Log> implements L
                 .setParameter("jobname", job.getName())
                 .getResultList();
     }
-
-    @Override // TODO move it to LOCAL on even remove
-    @TransactionAttribute(NOT_SUPPORTED)
-    public List<Log> allLog() {
-        return super.findAll();
-    }
 }

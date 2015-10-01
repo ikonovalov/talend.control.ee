@@ -25,16 +25,19 @@ public class TalendStatManagedBean {
     @EJB
     private JobService jobService;
 
-    public int getCount() {
-        return statCatcherService.count();
+    private List<JobRun> jobRuns;
+
+    public List<JobRun> reloadJobRuns(Job job) {
+        jobRuns = statCatcherService.runsForJob(job);
+        return jobRuns;
+    }
+
+    public int getJobRunsCount() {
+        return jobRuns != null ? jobRuns.size() : 0;
     }
 
     public List<JobRun> getJobRuns() {
-        return statCatcherService.allJobRuns();
-    }
-
-    public List<Job> getJobs() {
-        return jobService.getJobs();
+        return jobRuns;
     }
 
 }

@@ -24,17 +24,6 @@ public class JobBeanFacade implements JobService, JobServiceLocal {
     private EntityManager em;
 
     @Override
-    public List<Job> getJobs(){
-       return em.createQuery(
-               "select distinct s.job from Statistic as s", String.class
-       ).getResultList()
-               .stream()
-               .map(Job::new)
-               .sorted()
-               .collect(toList());
-    }
-
-    @Override
     public List<Job> getJobs(Project project) {
         return em.createQuery(
                 "select distinct s.job from Statistic as s where s.project = :p", String.class
