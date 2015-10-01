@@ -40,4 +40,8 @@ public class TalendStatManagedBean {
         return jobRuns;
     }
 
+    public JobRun findJobRunForPID(String pid) {
+        return jobRuns.stream().filter(run -> run.getStart().getPid().equals(pid)).findFirst().orElse(null);
+    }
+
 }

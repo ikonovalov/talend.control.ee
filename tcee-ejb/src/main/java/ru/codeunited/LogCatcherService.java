@@ -18,4 +18,5 @@ public interface LogCatcherService {
 
     Date getLastDate();
 
+    List<Log> getLogs(JobRun jobRun);
 }

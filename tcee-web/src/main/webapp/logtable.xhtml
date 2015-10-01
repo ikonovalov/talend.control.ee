@@ -2,48 +2,48 @@
              xmlns:f="http://xmlns.jcp.org/jsf/core"
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              value="#{talendLog.log}" var="log"
-             lazy="true" scrollable="true" disabledSelection="false">
+             lazy="true" scrollable="true">
     <p:column>
         <f:facet name="header">
-            <h:outputText value="Moment"></h:outputText>
+            <h:outputText value="Moment"/>
         </f:facet>
-        <h:outputText value="#{log.moment}"></h:outputText>
+        <h:outputText value="#{log.moment}"/>
     </p:column>
     <p:column>
         <f:facet name="header">
-            <h:outputText value="PID"></h:outputText>
+            <h:outputText value="PID"/>
         </f:facet>
-        <h:outputText value="#{log.pid}"></h:outputText>
+        <h:outputText value="#{log.pid}"/>
     </p:column>
     <p:column>
         <f:facet name="header">
-            <h:outputText value="Root"></h:outputText>
+            <h:outputText value="Root"/>
         </f:facet>
-        <h:outputText value="#{log.rootPid}"></h:outputText>
+        <h:outputText value="#{log.rootPid}"/>
     </p:column>
     <p:column>
         <f:facet name="header">
-            <h:outputText value="Father"></h:outputText>
+            <h:outputText value="Father"/>
         </f:facet>
-        <h:outputText value="#{log.fatherPid}"></h:outputText>
+        <h:outputText value="#{log.fatherPid}"/>
     </p:column>
     <p:column>
         <f:facet name="header">
-            <h:outputText value="Type"></h:outputText>
+            <h:outputText value="Type"/>
         </f:facet>
-        <h:outputText value="#{log.type}"></h:outputText>
+        <h:outputText value="#{log.type}"/>
     </p:column>
     <p:column>
         <f:facet name="header">
-            <h:outputText value="Message"></h:outputText>
+            <h:outputText value="Message"/>
         </f:facet>
-        <h:outputText value="#{log.message}"></h:outputText>
+        <h:outputText value="#{log.message}"/>
     </p:column>
     <p:column>
         <f:facet name="header">
-            <h:outputText value="Context"></h:outputText>
+            <h:outputText value="Context"/>
         </f:facet>
-        <h:outputText value="#{log.context}"></h:outputText>
+        <h:outputText value="#{log.context}"/>
     </p:column>
 
 </p:dataTable>

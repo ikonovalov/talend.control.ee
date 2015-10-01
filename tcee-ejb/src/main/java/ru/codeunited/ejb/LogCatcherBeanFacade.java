@@ -1,9 +1,6 @@
 package ru.codeunited.ejb;
 
-import ru.codeunited.Job;
-import ru.codeunited.Log;
-import ru.codeunited.LogCatcherService;
-import ru.codeunited.LogCatcherServiceLocal;
+import ru.codeunited.*;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -28,6 +25,14 @@ public class LogCatcherBeanFacade extends AbstractEntityFacade<Log> implements L
     @Override
     public Date getLastDate() {
         return (Date) getEntityManager().createQuery("select max(log.moment) from Log log").getSingleResult();
+    }
+
+    @Override
+    public List<Log> getLogs(JobRun jobRun) {
+        return getEntityManager()
+                .createQuery("select log from Log log where log.pid = :pid", Log.class)
+                .setParameter("pid", jobRun.getStart().getPid())
+                .getResultList();
     }
 
     @Override

@@ -2,6 +2,7 @@ package ru.codeunited.tcee.web.beans;
 
 
 import ru.codeunited.Job;
+import ru.codeunited.JobRun;
 import ru.codeunited.Log;
 import ru.codeunited.LogCatcherService;
 
@@ -42,6 +43,13 @@ public class TalendLogManagedBean {
      */
     public List<Log> reloadLog(Job job) {
         logs = logCatcherService.getLogs(job);
+        lastDate = ZERO_TIME;
+        logs.stream().max(Log::compareTo).ifPresent(log -> lastDate = log.getMoment());
+        return getLog();
+    }
+
+    public List<Log> reloadLog(JobRun jobRun) {
+        logs = logCatcherService.getLogs(jobRun);
         lastDate = ZERO_TIME;
         logs.stream().max(Log::compareTo).ifPresent(log -> lastDate = log.getMoment());
         return getLog();

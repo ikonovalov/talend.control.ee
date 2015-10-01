@@ -23,7 +23,7 @@ import java.util.List;
  * konovalov84@gmail.com
  * Created by ikonovalov on 30.09.15.
  */
-@ManagedBean(name = "jobBean")
+@ManagedBean(name = "jobController")
 @SessionScoped
 public class TalendJobManagedBean {
 
@@ -52,6 +52,10 @@ public class TalendJobManagedBean {
         return selectedJob != null;
     }
 
+    public Job getCurrentJob() {
+        return selectedJob;
+    }
+
     @PostConstruct
     public void initModel() {
         List<Project> projectList = jobService.getProjects();
@@ -61,8 +65,8 @@ public class TalendJobManagedBean {
                     DefaultSubMenu subMenu = new DefaultSubMenu(project.getName());
                     jobService.getJobs(project).stream().forEach(job -> {
                         DefaultMenuItem item = new DefaultMenuItem(job);
-                        item.setCommand("#{jobBean.onJobSelect}");
-                        item.setUpdate("details details:panel:logTable details:panel:jobRunTable");
+                        item.setCommand("#{jobController.onJobSelect}");
+                        item.setUpdate("details"); //  it update nested clients -> details:panel:logTable details:panel:jobRunTable
                         subMenu.addElement(item);
                     });
                     projectMenu.addElement(subMenu);
@@ -77,10 +81,15 @@ public class TalendJobManagedBean {
         selectedJob = (Job)actionEvent.getMenuItem().getValue();
         logBean.reloadLog(selectedJob);
         statBean.reloadJobRuns(selectedJob);
-        addMessage(selectedJob.getName(), "Job selected");
+        notification(selectedJob.getName(), "Job selected");
     }
 
-    public void addMessage(String summary, String detail) {
+    public void onPidSelected(String pid) {
+        logBean.reloadLog(statBean.findJobRunForPID(pid));
+        notification(pid, "Job selected");
+    }
+
+    public void notification(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
