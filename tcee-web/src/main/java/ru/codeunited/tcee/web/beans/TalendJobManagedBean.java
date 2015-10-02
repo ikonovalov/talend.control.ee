@@ -16,11 +16,9 @@ import ru.codeunited.Project;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import java.util.List;
 
 /**
@@ -30,7 +28,7 @@ import java.util.List;
  */
 @ManagedBean(name = "jobController")
 @SessionScoped
-public class TalendJobManagedBean {
+public class TalendJobManagedBean implements FacesNotificationTraits {
 
     @EJB
     private JobService jobService;
@@ -41,7 +39,7 @@ public class TalendJobManagedBean {
     @ManagedProperty(value = "#{talendStat}")
     private TalendStatManagedBean statBean;
 
-    private final MenuModel projectMenu = new DefaultMenuModel();
+    private final MenuModel projectMenuModel = new DefaultMenuModel();
 
     private Job selectedJob = null;
 
@@ -80,12 +78,12 @@ public class TalendJobManagedBean {
                         item.setUpdate("details"); //  it update nested clients -> details:panel:logTable details:panel:jobRunTable
                         subMenu.addElement(item);
                     });
-                    projectMenu.addElement(subMenu);
+                    projectMenuModel.addElement(subMenu);
                 });
     }
 
-    public MenuModel getProjectMenu() {
-        return projectMenu;
+    public MenuModel getProjectMenuModel() {
+        return projectMenuModel;
     }
 
     public BarChartModel getJobDurationsModel() {
@@ -131,15 +129,10 @@ public class TalendJobManagedBean {
         notification(selectedJob.getName(), "Job selected");
     }
 
-    public void onPidSelected(String pid) {
+    public void onJobRunSelected(String pid) {
         selectedJobRun = statBean.findJobRunForPID(pid);
         logBean.reloadLog(selectedJobRun);
-        notification(pid, "Job selected");
-    }
-
-    public void notification(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        notification(pid, "JobRun selected");
     }
 
 }

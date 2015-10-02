@@ -6,35 +6,41 @@
              paginator="true" rows="10"
              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
              rowsPerPageTemplate="5,10,15">
-    <p:column>
+    <p:column width="200">
         <f:facet name="header">
             <h:outputText value="Moment"/>
         </f:facet>
         <h:outputText value="#{log.moment}"/>
     </p:column>
-    <p:column>
+    <p:column width="65">
         <f:facet name="header">
             <h:outputText value="PID"/>
         </f:facet>
         <h:outputText value="#{log.pid}"/>
     </p:column>
-    <p:column>
+    <p:column width="65">
         <f:facet name="header">
             <h:outputText value="Root"/>
         </f:facet>
         <h:outputText value="#{log.rootPid}"/>
     </p:column>
-    <p:column>
+    <p:column width="65">
         <f:facet name="header">
             <h:outputText value="Father"/>
         </f:facet>
         <h:outputText value="#{log.fatherPid}"/>
     </p:column>
-    <p:column>
+    <p:column width="100">
         <f:facet name="header">
             <h:outputText value="Type"/>
         </f:facet>
         <h:outputText value="#{log.type}"/>
+    </p:column>
+    <p:column width="70">
+        <f:facet name="header">
+            <h:outputText value="Priority"/>
+        </f:facet>
+        <h:outputText value="#{log.priority}"/>
     </p:column>
     <p:column>
         <f:facet name="header">
@@ -42,7 +48,7 @@
         </f:facet>
         <h:outputText value="#{log.message}"/>
     </p:column>
-    <p:column>
+    <p:column width="120">
         <f:facet name="header">
             <h:outputText value="Context"/>
         </f:facet>

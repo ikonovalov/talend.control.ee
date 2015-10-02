@@ -21,6 +21,7 @@ public class StatisticCatcherBeanFacade extends AbstractEntityFacade<Statistic> 
         super(Statistic.class);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<JobRun> runsForJob(Job job) {
         Query query = getEntityManager().createQuery(

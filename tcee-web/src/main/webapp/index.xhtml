@@ -8,16 +8,23 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head/>
 <h:body>
-    <p:layout style="height: 820px">
+    <p:layout fullPage="true">
+
         <p:layoutUnit position="north" size="50">
-            <h:outputText value="Talend control"/>
+            <h:outputText value="Talend control" styleClass="caption"/>
         </p:layoutUnit>
-        <p:layoutUnit header="Projects" position="west" style="height: 100%" resizable="true" size="400" minSize="200" maxSize="500">
+
+        <p:layoutUnit header="Projects"
+                      position="west"
+                      style="height: 100%"
+                      resizable="true" collapsible="true"
+                      size="400" minSize="200" maxSize="500">
             <h:form id="projectForm">
                 <p:growl autoUpdate="true"/>
-                <p:panelMenu model="#{jobController.projectMenu}"/>
+                <p:panelMenu model="#{jobController.projectMenuModel}"/>
             </h:form>
         </p:layoutUnit>
+
         <p:layoutUnit position="center">
             <h:form id="details">
                 <p:accordionPanel id="panel" multiple="false" dynamic="true" rendered="#{jobController.jobSelected}">
@@ -33,6 +40,7 @@
                 </p:accordionPanel>
             </h:form>
         </p:layoutUnit>
+
     </p:layout>
 </h:body>
 </html>
