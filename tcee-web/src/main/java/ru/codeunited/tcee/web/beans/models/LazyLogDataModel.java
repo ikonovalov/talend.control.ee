@@ -21,13 +21,24 @@ public class LazyLogDataModel extends LazyDataModel<Log> {
 
     public LazyLogDataModel(List<Log> logs) {
         this.data = logs;
+        this.setRowCount(logs.size());
     }
 
     @Override
     public List<Log> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-        int maxIndex = first + pageSize;
+        int dataSize = data.size();
 
-        return data.subList(first, data.size() > maxIndex ? maxIndex : data.size());
+        if(dataSize > pageSize) {
+            try {
+                return data.subList(first, first + pageSize);
+            }
+            catch(IndexOutOfBoundsException e) {
+                return data.subList(first, first + (dataSize % pageSize));
+            }
+        }
+        else {
+            return data;
+        }
     }
 
     @Override
