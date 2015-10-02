@@ -6,6 +6,7 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 import ru.codeunited.Job;
+import ru.codeunited.JobRun;
 import ru.codeunited.JobService;
 import ru.codeunited.Project;
 
@@ -40,6 +41,8 @@ public class TalendJobManagedBean {
 
     private Job selectedJob = null;
 
+    private JobRun selectedJobRun = null;
+
     public void setLogBean(TalendLogManagedBean logBean) {
         this.logBean = logBean;
     }
@@ -54,6 +57,10 @@ public class TalendJobManagedBean {
 
     public Job getCurrentJob() {
         return selectedJob;
+    }
+
+    public JobRun getCurrentJobRun() {
+        return selectedJobRun;
     }
 
     @PostConstruct
@@ -85,7 +92,8 @@ public class TalendJobManagedBean {
     }
 
     public void onPidSelected(String pid) {
-        logBean.reloadLog(statBean.findJobRunForPID(pid));
+        selectedJobRun = statBean.findJobRunForPID(pid);
+        logBean.reloadLog(selectedJobRun);
         notification(pid, "Job selected");
     }
 

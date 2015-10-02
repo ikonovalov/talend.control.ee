@@ -1,9 +1,11 @@
 package ru.codeunited.tcee.web.beans;
 
+import org.primefaces.model.LazyDataModel;
 import ru.codeunited.Job;
 import ru.codeunited.JobRun;
 import ru.codeunited.JobService;
 import ru.codeunited.StatisticCatcherService;
+import ru.codeunited.tcee.web.beans.models.LazyJobRunDataModel;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -27,8 +29,11 @@ public class TalendStatManagedBean {
 
     private List<JobRun> jobRuns;
 
+    private LazyDataModel<JobRun> lazyJobRuns = LazyJobRunDataModel.EMPTY;
+
     public List<JobRun> reloadJobRuns(Job job) {
         jobRuns = statCatcherService.runsForJob(job);
+        lazyJobRuns = new LazyJobRunDataModel(jobRuns);
         return jobRuns;
     }
 
@@ -38,6 +43,10 @@ public class TalendStatManagedBean {
 
     public List<JobRun> getJobRuns() {
         return jobRuns;
+    }
+
+    public LazyDataModel<JobRun> getLazyJobRuns() {
+        return lazyJobRuns;
     }
 
     public JobRun findJobRunForPID(String pid) {
