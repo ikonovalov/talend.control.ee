@@ -1,10 +1,12 @@
 package ru.codeunited.tcee.web.beans;
 
 
+import org.primefaces.model.LazyDataModel;
 import ru.codeunited.Job;
 import ru.codeunited.JobRun;
 import ru.codeunited.Log;
 import ru.codeunited.LogCatcherService;
+import ru.codeunited.tcee.web.beans.models.LazyLogDataModel;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -30,6 +32,8 @@ public class TalendLogManagedBean {
     // log for selected job
     private List<Log> logs = new ArrayList<>();
 
+    private LazyDataModel<Log> lazyLog = LazyLogDataModel.EMPTY;
+
     private Date lastDate = null;
 
     public int getCount() {
@@ -43,16 +47,21 @@ public class TalendLogManagedBean {
      */
     public List<Log> reloadLog(Job job) {
         logs = logCatcherService.getLogs(job);
-        lastDate = ZERO_TIME;
-        logs.stream().max(Log::compareTo).ifPresent(log -> lastDate = log.getMoment());
+        lazyLog = new LazyLogDataModel(getLog());
+        resetLastMoment();
         return getLog();
     }
 
     public List<Log> reloadLog(JobRun jobRun) {
         logs = logCatcherService.getLogs(jobRun);
+        lazyLog = new LazyLogDataModel(getLog());
+        resetLastMoment();
+        return getLog();
+    }
+
+    private void resetLastMoment() {
         lastDate = ZERO_TIME;
         logs.stream().max(Log::compareTo).ifPresent(log -> lastDate = log.getMoment());
-        return getLog();
     }
 
     /**
@@ -61,6 +70,10 @@ public class TalendLogManagedBean {
      */
     public List<Log> getLog() {
         return logs;
+    }
+
+    public LazyDataModel<Log> getLazyLog() {
+        return lazyLog;
     }
 
     public Date getLastDate() {
