@@ -26,12 +26,12 @@ public class StatisticCatcherBeanFacade extends AbstractEntityFacade<Statistic> 
         Query query = getEntityManager().createQuery(
                 "SELECT a, b from Statistic a, Statistic b " +
                         "where " +
-                        "a.job = :jobname and " +
+                        "a.job = :jobName and " +
                         "a.pid = b.pid and " +
                         "a.messageType = 'begin' and b.messageType = 'end' " +
                         "and a.origin='' and b.origin = '' " +
                         "order by a.moment desc")
-                .setParameter("jobname", job.getName());
+                .setParameter("jobName", job.getName());
 
         List<Object[]> stats = query.getResultList();
         return stats
