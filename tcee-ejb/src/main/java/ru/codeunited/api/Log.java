@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,10 +19,13 @@ import java.util.Date;
 public class Log implements Serializable, Comparable<Log> {
 
     @Id
+    @NotNull
     private Long id;
 
+    @NotNull @Past
     private Date moment;
 
+    @NotNull
     private String pid;
 
     @Column(name = "root_pid")
@@ -31,6 +36,7 @@ public class Log implements Serializable, Comparable<Log> {
 
     private String project;
 
+    @NotNull
     private String job;
 
     private String context;

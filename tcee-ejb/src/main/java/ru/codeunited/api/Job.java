@@ -11,6 +11,7 @@ import java.io.Serializable;
  */
 public class Job implements Serializable, Comparable<Job> {
 
+    @NotNull
     private final String name;
 
     public Job(String name) {
@@ -27,7 +28,23 @@ public class Job implements Serializable, Comparable<Job> {
     }
 
     @Override
-    public int compareTo(@NotNull Job o) {
+    public int compareTo(Job o) {
         return getName().compareTo(o.getName());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Job job = (Job) o;
+
+        return name.equals(job.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

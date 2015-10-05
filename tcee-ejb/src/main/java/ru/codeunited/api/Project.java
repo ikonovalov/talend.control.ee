@@ -1,5 +1,6 @@
 package ru.codeunited.api;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,6 +10,7 @@ import java.io.Serializable;
  */
 public class Project implements Serializable, Comparable<Project> {
 
+    @NotNull
     private final String name;
 
     public Project(String name) {
