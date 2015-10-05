@@ -49,7 +49,7 @@
                     <ejbVersion>3.2</ejbVersion>
                     <generateClient>true</generateClient>
                     <clientIncludes>
-                        <clientInclude>ru/codeunited/*.class</clientInclude>
+                        <clientInclude>ru/codeunited/api/*.class</clientInclude>
                     </clientIncludes>
                 </configuration>
             </plugin>

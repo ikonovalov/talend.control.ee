@@ -10,6 +10,7 @@
     <modules>
         <module>tcee-ejb</module>
         <module>tcee-web</module>
+        <module>tcee-rs</module>
         <module>tcee-ear</module>
     </modules>
     <packaging>pom</packaging>

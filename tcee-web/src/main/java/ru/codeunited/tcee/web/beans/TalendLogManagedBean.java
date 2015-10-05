@@ -2,10 +2,10 @@ package ru.codeunited.tcee.web.beans;
 
 
 import org.primefaces.model.LazyDataModel;
-import ru.codeunited.Job;
-import ru.codeunited.JobRun;
-import ru.codeunited.Log;
-import ru.codeunited.LogCatcherService;
+import ru.codeunited.api.Job;
+import ru.codeunited.api.JobRun;
+import ru.codeunited.api.Log;
+import ru.codeunited.api.LogCatcherService;
 import ru.codeunited.tcee.web.beans.models.LazyLogDataModel;
 
 import javax.ejb.EJB;

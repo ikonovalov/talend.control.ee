@@ -1,7 +1,6 @@
 package ru.codeunited.ejb;
 
-import ru.codeunited.*;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import ru.codeunited.api.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;

@@ -1,6 +1,6 @@
 package ru.codeunited.tcee.web.beans.models;
 
-import ru.codeunited.JobRun;
+import ru.codeunited.api.JobRun;
 
 import java.util.Collections;
 import java.util.List;

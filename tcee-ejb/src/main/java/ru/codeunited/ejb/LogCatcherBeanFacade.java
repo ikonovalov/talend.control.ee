@@ -1,6 +1,6 @@
 package ru.codeunited.ejb;
 
-import ru.codeunited.*;
+import ru.codeunited.api.*;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

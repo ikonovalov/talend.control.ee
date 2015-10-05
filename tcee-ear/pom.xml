@@ -30,6 +30,12 @@
             <version>${version}</version>
             <type>war</type>
         </dependency>
+        <dependency>
+            <groupId>ru.codeunited</groupId>
+            <artifactId>tcee-rs</artifactId>
+            <version>${version}</version>
+            <type>war</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -50,6 +56,11 @@
                             <groupId>${groupId}</groupId>
                             <artifactId>tcee-web</artifactId>
                             <contextRoot>/talend-control</contextRoot>
+                        </webModule>
+                        <webModule>
+                            <groupId>${groupId}</groupId>
+                            <artifactId>tcee-rs</artifactId>
+                            <contextRoot>/talend-rs</contextRoot>
                         </webModule>
                     </modules>
                 </configuration>

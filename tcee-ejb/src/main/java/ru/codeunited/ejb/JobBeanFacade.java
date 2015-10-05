@@ -1,9 +1,9 @@
 package ru.codeunited.ejb;
 
-import ru.codeunited.Job;
-import ru.codeunited.JobService;
-import ru.codeunited.JobServiceLocal;
-import ru.codeunited.Project;
+import ru.codeunited.api.Job;
+import ru.codeunited.api.JobService;
+import ru.codeunited.api.JobServiceLocal;
+import ru.codeunited.api.Project;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

@@ -1,4 +1,4 @@
-package ru.codeunited;
+package ru.codeunited.api;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

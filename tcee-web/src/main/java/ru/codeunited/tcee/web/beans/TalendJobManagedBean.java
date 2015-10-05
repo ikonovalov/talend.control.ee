@@ -9,10 +9,10 @@ import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
-import ru.codeunited.Job;
-import ru.codeunited.JobRun;
-import ru.codeunited.JobService;
-import ru.codeunited.Project;
+import ru.codeunited.api.Job;
+import ru.codeunited.api.JobRun;
+import ru.codeunited.api.JobService;
+import ru.codeunited.api.Project;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

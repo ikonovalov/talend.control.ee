@@ -1,4 +1,4 @@
-package ru.codeunited;
+package ru.codeunited.api;
 
 import javax.ejb.Remote;
 import java.util.List;
