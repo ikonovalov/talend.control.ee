@@ -29,9 +29,14 @@ public class LogCatcherBeanFacade extends AbstractEntityFacade<Log> implements L
 
     @Override
     public List<Log> getLogs(JobRun jobRun) {
+        return getLogs(jobRun.getStart().getPid());
+    }
+
+    @Override
+    public List<Log> getLogs(String jobPid) {
         return getEntityManager()
                 .createQuery("select log from Log log where log.pid = :pid", Log.class)
-                .setParameter("pid", jobRun.getStart().getPid())
+                .setParameter("pid", jobPid)
                 .getResultList();
     }
 
