@@ -1,6 +1,7 @@
 package ru.codeunited.api;
 
 import javax.ejb.Remote;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -16,8 +17,13 @@ public interface JobService {
      * @param project
      * @return
      */
-    List<Job> getJobs(Project project);
+    List<Job> getJobs(@Valid Project project);
 
+    /**
+     * Returns all jobs for project ("by project name")
+     * @param project list
+     * @return
+     */
     List<Job> getJobs(String project);
 
     /**

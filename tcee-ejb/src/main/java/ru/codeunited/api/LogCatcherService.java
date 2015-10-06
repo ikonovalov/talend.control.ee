@@ -1,6 +1,7 @@
 package ru.codeunited.api;
 
 import javax.ejb.Remote;
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
@@ -25,14 +26,14 @@ public interface LogCatcherService {
      * @param job
      * @return
      */
-    List<Log> getLogs(Job job);
+    List<Log> getLogs(@Valid Job job);
 
     /**
      * Returns log records for specified JobRun only.
      * @param jobRun
      * @return
      */
-    List<Log> getLogs(JobRun jobRun);
+    List<Log> getLogs(@Valid JobRun jobRun);
 
     /**
      * Count all log records in store.

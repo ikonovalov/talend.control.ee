@@ -1,5 +1,6 @@
 package ru.codeunited.api;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -9,6 +10,7 @@ import java.io.Serializable;
  */
 public class JobRun implements Serializable {
 
+    @NotNull
     private Statistic start;
 
     private Statistic end;
@@ -20,6 +22,10 @@ public class JobRun implements Serializable {
     public JobRun(Statistic start, Statistic end) {
         this.start = start;
         this.end = end;
+    }
+
+    public JobRun(Statistic start) {
+        this(start, null);
     }
 
     public JobRun(Statistic[] statistics) {
@@ -42,5 +48,13 @@ public class JobRun implements Serializable {
 
     public void setEnd(Statistic end) {
         this.end = end;
+    }
+
+    /**
+     * Check that job still running
+     * @return if job is running
+     */
+    public boolean isStillRunning() {
+        return end == null;
     }
 }
