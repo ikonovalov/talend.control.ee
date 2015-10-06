@@ -1,6 +1,9 @@
 package ru.codeunited.api;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -9,6 +12,8 @@ import java.io.Serializable;
  * konovalov84@gmail.com
  * Created by ikonovalov on 29.09.15.
  */
+@XmlRootElement(name = "job", namespace = Constants.XML_NAMESPACE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Job implements Serializable, Comparable<Job> {
 
     @NotNull

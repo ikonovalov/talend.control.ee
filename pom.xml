@@ -12,6 +12,7 @@
         <module>tcee-web</module>
         <module>tcee-rs</module>
         <module>tcee-ear</module>
+        <module>tcee-launch-osgi</module>
     </modules>
     <packaging>pom</packaging>
 
