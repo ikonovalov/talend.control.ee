@@ -29,7 +29,7 @@ public class StatisticCatcherBeanFacade extends AbstractEntityFacade<Statistic> 
                         "a.job = :jobName and " +
                         "a.pid = b.pid and " +
                         "a.messageType = 'begin' and b.messageType = 'end' " +
-                        "and a.origin='' and b.origin = '' " +
+                        "and a.origin is null and b.origin is null " +
                         "order by a.moment desc")
                 .setParameter("jobName", job.getName());
 
